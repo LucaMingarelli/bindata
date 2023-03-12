@@ -46,17 +46,16 @@ def commonprob2sigma(commonprob, simulvals=None):
     commonprob = np.array(commonprob)
     N = commonprob.shape[0]
 
+    if simulvals is None:
+        simulvals = SimulVals
+
     _check_against_simulvals(x=np.diagonal(commonprob), simulvals=simulvals)
 
-    if simulvals is None:
-        mat = SimulVals
-    else:
-        mat = simulvals
     Σ = np.diag(np.ones(N))
     N_Σ = Σ.shape[0]
 
     for i, j in zip(*np.triu_indices(N_Σ, k=1)):
-        r, jp = mat[tuple(sorted((round(commonprob[i, i], 10), round(commonprob[j, j], 10))))]
+        r, jp = simulvals[tuple(sorted((round(commonprob[i, i], 10), round(commonprob[j, j], 10))))]
         func = interpolate.interp1d(jp, r)
         Σ[i, j] = Σ[j, i] = func(commonprob[i, j])
     return Σ
