@@ -3,3 +3,4 @@
 !.gitignore
 !.gitconfig
 !.coveragerc
+!.circleci
