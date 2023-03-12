@@ -21,8 +21,8 @@ from scipy import interpolate
 from bindata.check_commonprob import check_commonprob
 from scipy.stats import norm
 
-with open("./res/SimulVals.pickle", 'rb') as f:
-# with open(f"{__file__}/../res/SimulVals.pickle", 'rb') as f:
+# with open("./res/SimulVals.pickle", 'rb') as f:
+with open(f"{__file__}/../res/SimulVals.pickle", 'rb') as f:
     SimulVals = pickle.load(f)
 
 
