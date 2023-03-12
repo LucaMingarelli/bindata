@@ -1,0 +1,4 @@
+.*
+--pycache__/*
+!.gitignore
+!.gitconfig
