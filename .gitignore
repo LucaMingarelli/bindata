@@ -1,5 +1,6 @@
 .*
---pycache__/*
+__pycache__/*
+*cpython*
 !.gitignore
 !.gitconfig
 !.coveragerc
