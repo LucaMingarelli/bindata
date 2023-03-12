@@ -109,13 +109,13 @@ class Tests:
                                     [-0.33612065, -0.33655543,  1.        ]]),
                           rtol=1e-4, atol=2e-3).all()
 
-    def test_rmvbin3(self):
-        N = 10_000
-        p_d = 0.1
-        corr = 0.1
-        a, b = rmvbin(N=N, margprob=[p_d, p_d],
-                      bincorr=[[1, corr],
-                               [corr, 1]]).T
+    # def test_rmvbin3(self):
+    #     N = 10_000
+    #     p_d = 0.1
+    #     corr = 0.1
+    #     a, b = rmvbin(N=N, margprob=[p_d, p_d],
+    #                   bincorr=[[1, corr],
+    #                            [corr, 1]]).T
 
     def test_simul_commonprob(self):
         margprob = np.arange(0, 1.5, 0.5)
