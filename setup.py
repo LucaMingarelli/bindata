@@ -10,7 +10,7 @@ import bindata as bnd
 with open("README.md", 'r') as f:
     long_description = f.read()
 
-with open("connectors/requirements.txt") as f:
+with open("bindata/requirements.txt") as f:
     install_requirements = f.read().splitlines()
 
 
