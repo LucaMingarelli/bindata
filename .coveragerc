@@ -1,0 +1,4 @@
+[run]
+omit =
+    bindata/res/*
+    bindata/tests/*

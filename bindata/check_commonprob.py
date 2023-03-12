@@ -5,7 +5,6 @@
 """
 import numpy as np
 
-#DONE
 def check_commonprob(commonprob):
     """
     Tests admissibility of the joint probability matrix.

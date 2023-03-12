@@ -23,11 +23,11 @@ Precomputed (via Monte Carlo simulations) `SimulVals` are also available.
 
 ### Generate *uncorrelated* variates
 ```python
-import bindata
+import bindata as bnd
 
 margprob = [0.3, 0.9]
 
-X = bindata.rmvbin(N=100_000, margprob=margprob)
+X = bnd.rmvbin(N=100_000, margprob=margprob)
 ```
 
 Now let's verify the sample marginals and correlations:
@@ -52,10 +52,10 @@ print(np.corrcoef(X, rowvar=False))
 corr = np.array([[1., -0.25, -0.0625],
                  [-0.25,   1.,  0.25],
                  [-0.0625, 0.25, 1.]])
-commonprob = bindata.bincorr2commonprob(margprob=[0.2, 0.5, 0.8], 
+commonprob = bnd.bincorr2commonprob(margprob=[0.2, 0.5, 0.8], 
                                         bincorr=corr)
 
-X = bindata.rmvbin(margprob=np.diag(commonprob), 
+X = bnd.rmvbin(margprob=np.diag(commonprob), 
                    commonprob=commonprob, N=100_000)
 print(X.mean(0))
 print(np.corrcoef(X, rowvar=False))
@@ -74,7 +74,7 @@ print(np.corrcoef(X, rowvar=False))
 commonprob = [[1/2, 1/5, 1/6],
               [1/5, 1/2, 1/6],
               [1/6, 1/6, 1/2]]
-X = bindata.rmvbin(N=100_000, commonprob=commonprob)
+X = bnd.rmvbin(N=100_000, commonprob=commonprob)
 
 print(X.mean(0))
 print(np.corrcoef(X, rowvar=False))
