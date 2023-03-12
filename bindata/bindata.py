@@ -16,10 +16,10 @@ import numpy as np
 import pickle
 from scipy.stats import multivariate_normal
 from scipy import interpolate
-from bindata.check_commonprob import check_commonprob
+from bindata.check_commonprob import check_commonprob, _check_against_simulvals
 from scipy.stats import norm
 
-# with open("./res/SimulVals.pickle", 'rb') as f:
+# with open("./bindata/res/SimulVals.pickle", 'rb') as f:
 with open(f"{'/'.join(__file__.split('/')[:-1])}/res/simulvals.pickle", 'rb') as f:
     SimulVals = pickle.load(f)
 
@@ -42,6 +42,9 @@ def commonprob2sigma(commonprob, simulvals=None):
     """
     commonprob = np.array(commonprob)
     N = commonprob.shape[0]
+
+    _check_against_simulvals(x=np.diagonal(commonprob), simulvals=simulvals)
+
     if simulvals is None:
         mat = SimulVals
     else:
@@ -50,7 +53,7 @@ def commonprob2sigma(commonprob, simulvals=None):
     N_Σ = Σ.shape[0]
 
     for i, j in zip(*np.triu_indices(N_Σ, k=1)):
-        r, jp = mat[tuple(sorted((round(commonprob[i, i], 2), round(commonprob[j, j], 2))))]
+        r, jp = mat[tuple(sorted((round(commonprob[i, i], 10), round(commonprob[j, j], 10))))]
         func = interpolate.interp1d(jp, r)
         Σ[i, j] = Σ[j, i] = func(commonprob[i, j])
     return Σ
