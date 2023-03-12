@@ -1,4 +1,4 @@
-# bindata <img src="./bindata/res/binary.png"  width="80">
+# bindata <img src="https://raw.githubusercontent.com/LucaMingarelli/bindata/master/bindata/res/binary.png"  width="80">
 
 [![CircleCI](https://circleci.com/gh/LucaMingarelli/bindata.svg?style=svg&circle-token=cd9c300380d25c24c66cd6637693cc50a7e00248)](https://app.circleci.com/pipelines/github/LucaMingarelli/bindata)
 [![version](https://img.shields.io/badge/version-0.7.0-success.svg)](#)
