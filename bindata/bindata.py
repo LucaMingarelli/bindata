@@ -20,7 +20,7 @@ from bindata.check_commonprob import check_commonprob
 from scipy.stats import norm
 
 # with open("./res/SimulVals.pickle", 'rb') as f:
-with open(f"{'/'.join(__file__.split('/')[:-2])}/res/SimulVals.pickle", 'rb') as f:
+with open(f"{'/'.join(__file__.split('/')[:-1])}/res/SimulVals.pickle", 'rb') as f:
     SimulVals = pickle.load(f)
 
 
