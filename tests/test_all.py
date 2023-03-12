@@ -90,7 +90,6 @@ class Tests:
         m = [[1/2, 1/5, 1/6],
              [1/5, 1/2, 1/6],
              [1/6, 1/6, 1/2]]
-        commonprob2sigma(m)
         X = rmvbin(N=N, commonprob=m)
         assert np.isclose(X.mean(0), np.diagonal(m), rtol=1e-4, atol=2e-3).all()
         assert np.isclose(np.corrcoef(X, rowvar=False),
