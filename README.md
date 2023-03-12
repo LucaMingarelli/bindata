@@ -28,7 +28,7 @@ with the following functions:
 Precomputed (via Monte Carlo simulations) `SimulVals` are also available.
 
 ## Installation
-**bindata** can install with pip as:
+**bindata** can installed with pip as:
 
 ```pip install bindata```
 
