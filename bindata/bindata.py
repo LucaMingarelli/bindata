@@ -9,8 +9,6 @@ This software is a python implementation of the algorithm outlined in:
 On the Generation of Correlated Artificial Binary Data
 Friedrich Leisch, Andreas Weingessel, Kurt Hornik (1998)
 
-Implementation follows closely the implementation details in the R package `bindata`
-
 **Authors**: L. Mingarelli
 """
 
