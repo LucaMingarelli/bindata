@@ -1,5 +1,15 @@
 # bindata <img src="./res/binary.png"  width="80">
 
+[![CircleCI](https://circleci.com/gh/LucaMingarelli/CryptPandas.svg?style=svg&circle-token=23ad3dc02a697420107b82330e00b944f9ea53ed)](https://app.circleci.com/pipelines/github/LucaMingarelli/CryptPandas)
+[![Build and test GitHub](https://github.com/lucamingarelli/CryptPandas/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/LucaMingarelli/CryptPandas/actions)
+[![version](https://img.shields.io/badge/version-0.7.0-success.svg)](#)
+[![PyPI Latest Release](https://img.shields.io/pypi/v/bindata.svg)](https://pypi.org/project/bindata/)
+[![License](https://img.shields.io/pypi/l/bindata.svg)](https://github.com/LucaMingarelli/CryptPandas/blob/master/LICENSE.txt)
+
+[//]: # ([![Downloads]&#40;https://static.pepy.tech/personalized-badge/bindata?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads&#41;]&#40;https://pepy.tech/project/bindata&#41;)
+
+
+
 A python replication of the omonymous R library 
 [`bindata`](https://cran.r-project.org/web/packages/bindata/bindata.pdf),
  based on the paper 
