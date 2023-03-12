@@ -1,4 +1,4 @@
-# bindata <img src="./res/binary.png"  width="80">
+# bindata <img src="./bindata/res/binary.png"  width="80">
 
 [![CircleCI](https://circleci.com/gh/LucaMingarelli/CryptPandas.svg?style=svg&circle-token=23ad3dc02a697420107b82330e00b944f9ea53ed)](https://app.circleci.com/pipelines/github/LucaMingarelli/CryptPandas)
 [![Build and test GitHub](https://github.com/lucamingarelli/CryptPandas/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/LucaMingarelli/CryptPandas/actions)
