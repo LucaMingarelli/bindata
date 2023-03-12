@@ -90,3 +90,5 @@ def simul_commonprob(margprob, corr=0, method="integrate", n1=10**5, n2=10, pbar
 
     return D
 
+
+
