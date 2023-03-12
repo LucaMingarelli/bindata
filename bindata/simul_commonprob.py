@@ -74,10 +74,8 @@ def simul_commonprob(margprob, corr=0, method="integrate", n1=10**5, n2=10, pbar
                     else:
                         z[m, n, k] = a
                 else:               # Monte Carlo
-                    x2 = np.zeros(n2)
-                    for l in range(n2):
-                        x1 = np.random.multivariate_normal([q1, q2], sigma, size=n1)
-                        x2[l] = np.mean((x1[:, 0] > 0) & (x1[:, 1] > 0))
+                    x1 = np.random.multivariate_normal([q1, q2], sigma, size=(n2, n1))
+                    x2 = np.mean((x1[:, :, 0] > 0) & (x1[:, :, 1] > 0), axis=1)
                     z[m, n, k] = np.mean(x2)
                 if not pbar: print("done")
                 z[n, m, k] = z[m, n, k]
