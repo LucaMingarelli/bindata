@@ -16,7 +16,7 @@ with the following functions:
 * `rmvbin`
 * `simul_commonprob` (`simul.commonprob` in R)
 
-`SimulVals` is also available...
+Precomputed (via Monte Carlo simulations) `SimulVals` are also available.
 
 ## How to
 
