@@ -19,9 +19,12 @@ from scipy import interpolate
 from bindata.check_commonprob import check_commonprob, _check_against_simulvals
 from scipy.stats import norm
 
-# with open("./bindata/res/SimulVals.pickle", 'rb') as f:
-with open(f"{'/'.join(__file__.split('/')[:-1])}/res/simulvals.pickle", 'rb') as f:
-    SimulVals = pickle.load(f)
+try:
+    with open(f"{'/'.join(__file__.split('/')[:-1])}/res/simulvals.pickle", 'rb') as f:
+        SimulVals = pickle.load(f)
+except:
+    with open("./bindata/res/SimulVals.pickle", 'rb') as f:
+        SimulVals = pickle.load(f)
 
 
 def commonprob2sigma(commonprob, simulvals=None):
