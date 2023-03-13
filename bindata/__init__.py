@@ -7,7 +7,7 @@
 from bindata.bindata import *
 
 __about__ = "A library for sampling correlated binary variates."
-__version__= '0.9.1'
+__version__= '0.9.2'
 __author__ = 'Luca Mingarelli'
 __email__ = "lucamingarelli@me.com"
 __url__ = "https://github.com/LucaMingarelli/bindata"

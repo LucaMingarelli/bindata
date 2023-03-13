@@ -42,15 +42,14 @@ def simul_commonprob(margprob, corr=0, method="integrate", n1=10**5, n2=10, pbar
         raise ValueError("invalid method")
 
     for k in range(lr):
+        corr[k] = round(corr[k], 12)
         sigma = np.array([[1, corr[k]], [corr[k], 1]])
-
         if pbar: range_prog = tqdm(range(lm), desc=f'{corr[k]}')
         else:    range_prog = range(lm)
         for m in range_prog:
             q1 = norm.ppf(margprob[m])
+            margprob[m] = round(margprob[m], 12)
             for n in range(m, lm):
-                corr[k] = round(corr[k], 12)
-                margprob[m] = round(margprob[m], 12)
                 margprob[n] = round(margprob[n], 12)
                 if not pbar: print(corr[k], margprob[m], margprob[n], ": ", end="")
                 q2 = norm.ppf(margprob[n])
