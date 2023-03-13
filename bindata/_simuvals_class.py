@@ -58,11 +58,10 @@ class SimuValsClass():
     _SimulVals = _SimulVals
 
     def __getitem__(self, arg):
-        px, py = arg
         if arg in self._SimulVals.keys():
             return self._SimulVals[arg]
         else:
-            return interpolate_matrix(D=self._SimulVals, target_coord=(px, py))
+            return interpolate_matrix(D=self._SimulVals, target_coord=arg)
 
     def keys(self):
         return self._SimulVals.keys()
