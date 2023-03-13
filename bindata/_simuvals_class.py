@@ -69,5 +69,11 @@ class SimuValsClass():
     def values(self):
         return self._SimulVals.values()
 
+    def items(self):
+        return self._SimulVals.items()
+
+    def __repr__(self):
+        return self._SimulVals.__repr__()
+
 
 SimulVals = SimuValsClass()
