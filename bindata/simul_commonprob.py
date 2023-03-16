@@ -44,7 +44,7 @@ def simul_commonprob(margprob, corr=0, method="integrate", n1=10**5, n2=10, pbar
     for k in range(lr):
         corr[k] = round(corr[k], 12)
         sigma = np.array([[1, corr[k]], [corr[k], 1]])
-        if pbar: range_prog = tqdm(range(lm), desc=f'{corr[k]}')
+        if pbar: range_prog = tqdm(range(lm),miniters=100, desc=f'{corr[k]}')
         else:    range_prog = range(lm)
         for m in range_prog:
             q1 = norm.ppf(margprob[m])
