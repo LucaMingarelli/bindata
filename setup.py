@@ -24,7 +24,7 @@ setuptools.setup(
     license='MIT',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=['bindata', 'bindata.tests', , 'bindata.res'],
+    packages=['bindata', 'bindata.tests', 'bindata.res'],
     package_data={'':  ['../bindata/res/*']},
     install_requires=install_requirements,
     classifiers=["Programming Language :: Python :: 3",
