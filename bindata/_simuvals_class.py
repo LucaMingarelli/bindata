@@ -10,7 +10,7 @@ try:
     with open(f"{'/'.join(__file__.split('/')[:-1])}/res/simulvals.pickle", 'rb') as f:
         _SimulVals = pickle.load(f)
 except:
-    with open("./bindata/res/SimulVals.pickle", 'rb') as f:
+    with open("./bindata/res/simulvals.pickle", 'rb') as f:
         _SimulVals = pickle.load(f)
 
 
