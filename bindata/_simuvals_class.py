@@ -5,9 +5,11 @@
 """
 import pickle
 import numpy as np
+import os
 
 try:
-    with open(f"{'/'.join(__file__.split('/')[:-1])}/res/simulvals.pickle", 'rb') as f:
+    root = os.path.dirname(__file__)
+    with open(os.path.join(root, 'res', 'simulvals.pickle'), 'rb') as f:
         _SimulVals = pickle.load(f)
 except:
     with open("./bindata/res/simulvals.pickle", 'rb') as f:
