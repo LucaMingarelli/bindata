@@ -60,7 +60,7 @@ def commonprob2sigma(commonprob, simulvals=None, par=False):
             r, jp = simulvals[tuple(sorted((round(commonprob[i, i], 10), round(commonprob[j, j], 10))))]
             func = interpolate.interp1d(jp, r)
             return func(commonprob[i, j])
-        
+               
         with concurrent.futures.ThreadPoolExecutor() as executor:
             indices = np.triu_indices(N_Σ, k=1)
             results = executor.map(lambda idx: calculate_value(*idx), zip(*indices))
