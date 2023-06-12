@@ -61,7 +61,7 @@ def commonprob2sigma(commonprob, simulvals=None, par=False, n_threads=None):
             r, jp = simulvals[tuple(sorted((round(commonprob[i, i], 10), round(commonprob[j, j], 10))))]
             func = interpolate.interp1d(jp, r)
             return func(commonprob[i, j])
-               
+              
         with concurrent.futures.ThreadPoolExecutor(max_workers=n_threads) as executor:
             indices = np.triu_indices(N_Σ, k=1)
             results = executor.map(lambda idx: calculate_value(*idx), zip(*indices))
@@ -74,7 +74,9 @@ def commonprob2sigma(commonprob, simulvals=None, par=False, n_threads=None):
 def bincorr2commonprob(margprob, bincorr):
     margprob, bincorr = np.array(margprob), np.array(bincorr)
     sqrtprod = np.sqrt(np.multiply.outer(margprob * (1 - margprob), margprob * (1 - margprob)))
-    return bincorr * sqrtprod + np.multiply.outer(margprob, margprob)
+    commonprob = bincorr * sqrtprod + np.multiply.outer(margprob, margprob)
+    commonprob[commonprob<0] = 0
+    return commonprob
 
 def ra2ba(x):
     """
