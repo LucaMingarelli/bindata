@@ -5,6 +5,7 @@
 """
 import numpy as np
 
+
 from bindata.check_commonprob import check_commonprob
 from bindata import (commonprob2sigma,
                      condprob,
@@ -44,9 +45,11 @@ class Tests:
              [1/5, 1/2, 1/6],
              [1/6, 1/6, 1/2]]
         Σ = commonprob2sigma(commonprob=m)
+        Σ2 = commonprob2sigma(commonprob=m, par=True)
         assert (Σ == np.array([[ 1.        , -0.3122489280072217, -0.5038009378508685],
                                [-0.3122489280072217,  1.        , -0.5038009378508685],
                                [-0.5038009378508685, -0.5038009378508685,  1.        ]])).all()
+        assert (Σ == Σ2).all()
 
     def test_condprob(self):
         x = np.array([[0,1], [1,1], [0,0], [0,0], [1,0], [1,1]])

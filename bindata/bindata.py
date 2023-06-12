@@ -18,10 +18,11 @@ from scipy.stats import multivariate_normal
 from scipy import interpolate
 from bindata.check_commonprob import check_commonprob, _check_against_simulvals
 from scipy.stats import norm
+import concurrent
 
 from bindata._simuvals_class import SimulVals
 
-def commonprob2sigma(commonprob, simulvals=None):
+def commonprob2sigma(commonprob, simulvals=None, par=False):
     """
     Computes a covariance matrix for a normal distribution
     which corresponds to a binary distribution with marginal probabilities given by
@@ -33,6 +34,8 @@ def commonprob2sigma(commonprob, simulvals=None):
     arguments and yields are warning message if the matrix is not positive definite
     Args:
         commonprob (numpy.array): The joint probabilities matrix.
+        simulvals  (numpy.array): If None takes the precomputed bindata._simuvals_class.SimulVals. 
+        par (bool): Whether to use multithreading
 
     Returns:
         A covariance matrix is returned with the same dimensions as commonprob.
@@ -47,11 +50,24 @@ def commonprob2sigma(commonprob, simulvals=None):
 
     Σ = np.diag(np.ones(N))
     N_Σ = Σ.shape[0]
+    if not par:
+        for i, j in zip(*np.triu_indices(N_Σ, k=1)):
+            r, jp = simulvals[tuple(sorted((round(commonprob[i, i], 10), round(commonprob[j, j], 10))))]
+            func = interpolate.interp1d(jp, r)
+            Σ[i, j] = Σ[j, i] = func(commonprob[i, j])
+    else:
+        def calculate_value(i, j):
+            r, jp = simulvals[tuple(sorted((round(commonprob[i, i], 10), round(commonprob[j, j], 10))))]
+            func = interpolate.interp1d(jp, r)
+            return func(commonprob[i, j])
+        
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            indices = np.triu_indices(N_Σ, k=1)
+            results = executor.map(lambda idx: calculate_value(*idx), zip(*indices))
 
-    for i, j in zip(*np.triu_indices(N_Σ, k=1)):
-        r, jp = simulvals[tuple(sorted((round(commonprob[i, i], 10), round(commonprob[j, j], 10))))]
-        func = interpolate.interp1d(jp, r)
-        Σ[i, j] = Σ[j, i] = func(commonprob[i, j])
+            for (i, j), result in zip(zip(*indices), results):
+                Σ[i, j] = Σ[j, i] = result
+            
     return Σ
 
 def bincorr2commonprob(margprob, bincorr):
