@@ -22,7 +22,7 @@ import concurrent
 
 from bindata._simuvals_class import SimulVals
 
-def commonprob2sigma(commonprob, simulvals=None, par=False):
+def commonprob2sigma(commonprob, simulvals=None, par=False, n_threads=None):
     """
     Computes a covariance matrix for a normal distribution
     which corresponds to a binary distribution with marginal probabilities given by
@@ -36,6 +36,7 @@ def commonprob2sigma(commonprob, simulvals=None, par=False):
         commonprob (numpy.array): The joint probabilities matrix.
         simulvals  (numpy.array): If None takes the precomputed bindata._simuvals_class.SimulVals. 
         par (bool): Whether to use multithreading
+        n_threads (int | None): if par is True, sets number of threads
 
     Returns:
         A covariance matrix is returned with the same dimensions as commonprob.
@@ -61,7 +62,7 @@ def commonprob2sigma(commonprob, simulvals=None, par=False):
             func = interpolate.interp1d(jp, r)
             return func(commonprob[i, j])
                
-        with concurrent.futures.ThreadPoolExecutor() as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=n_threads) as executor:
             indices = np.triu_indices(N_Σ, k=1)
             results = executor.map(lambda idx: calculate_value(*idx), zip(*indices))
 
