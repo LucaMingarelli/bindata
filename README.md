@@ -1,7 +1,7 @@
 # bindata <img src="https://raw.githubusercontent.com/LucaMingarelli/bindata/master/bindata/res/binary.png"  width="80">
 
 [![CircleCI](https://circleci.com/gh/LucaMingarelli/bindata.svg?style=svg&circle-token=cd9c300380d25c24c66cd6637693cc50a7e00248)](https://app.circleci.com/pipelines/github/LucaMingarelli/bindata)
-[![version](https://img.shields.io/badge/version-0.10.2-success.svg)](#)
+[![version](https://img.shields.io/badge/version-0.11.0-success.svg)](#)
 [![PyPI Latest Release](https://img.shields.io/pypi/v/bindata.svg)](https://pypi.org/project/bindata/)
 [![License](https://img.shields.io/pypi/l/bindata.svg)](https://github.com/LucaMingarelli/bindata/blob/master/LICENSE.txt)
 
