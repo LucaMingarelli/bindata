@@ -26,8 +26,8 @@ def interpolate_matrix(D, target_coord):
                                           )
 
     x, y = target_coord
-    xid = np.argmax(available_x_crds >= x)
-    yid = np.argmax(available_y_crds >= y)
+    xid = np.argmax(available_x_crds >= x) - 1
+    yid = np.argmax(available_y_crds >= y) - 1
 
     x1, x2 = available_x_crds[xid], available_x_crds[min(xid+1, len(available_x_crds)-1)]
     y1, y2 = available_y_crds[yid], available_y_crds[min(yid+1, len(available_y_crds)-1)]
