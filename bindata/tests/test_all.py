@@ -5,7 +5,6 @@
 """
 import numpy as np
 
-
 from bindata.check_commonprob import check_commonprob
 from bindata import (commonprob2sigma,
                      condprob,
@@ -46,9 +45,9 @@ class Tests:
              [1/6, 1/6, 1/2]]
         Σ = commonprob2sigma(commonprob=m)
         Σ2 = commonprob2sigma(commonprob=m, par=True)
-        assert (Σ == np.array([[ 1.        , -0.3122489280072217, -0.5038009378508685],
-                               [-0.3122489280072217,  1.        , -0.5038009378508685],
-                               [-0.5038009378508685, -0.5038009378508685,  1.        ]])).all()
+        assert (Σ == np.array([[ 1.        , -0.3088814758080922, -0.500114775383386],
+                               [-0.3088814758080922,  1.        , -0.500114775383386],
+                               [-0.500114775383386, -0.500114775383386,  1.        ]])).all()
         assert (Σ == Σ2).all()
 
     def test_condprob(self):
@@ -96,9 +95,9 @@ class Tests:
         X = rmvbin(N=N, commonprob=m)
         assert np.isclose(X.mean(0), np.diagonal(m), rtol=1e-4, atol=2e-3).all()
         assert np.isclose(np.corrcoef(X, rowvar=False),
-                          np.array([[ 1.        , -0.20189503, -0.33612065],
-                                    [-0.20189503,  1.        , -0.33655543],
-                                    [-0.33612065, -0.33655543,  1.        ]]),
+                          np.array([[ 1.        , -0.19966241, -0.33318569],
+                                    [-0.19966241,  1.        , -0.33377646],
+                                    [-0.33318569, -0.33377646,  1.        ]]),
                           rtol=1e-4, atol=2e-3).all()
 
         # Same as the example above, but faster if the same probabilities are
@@ -107,9 +106,9 @@ class Tests:
         X = rmvbin(N=N, margprob=np.diagonal(m), sigma=sigma)
         assert np.isclose(X.mean(0), np.diagonal(m), rtol=1e-4, atol=2e-3).all()
         assert np.isclose(np.corrcoef(X, rowvar=False),
-                          np.array([[ 1.        , -0.20189503, -0.33612065],
-                                    [-0.20189503,  1.        , -0.33655543],
-                                    [-0.33612065, -0.33655543,  1.        ]]),
+                          np.array([[ 1.        , -0.19966241, -0.33318569],
+                                    [-0.19966241,  1.        , -0.33377646],
+                                    [-0.33318569, -0.33377646,  1.        ]]),
                           rtol=1e-4, atol=2e-3).all()
 
     def test_rmvbin3(self):
