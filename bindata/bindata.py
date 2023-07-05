@@ -55,12 +55,12 @@ def commonprob2sigma(commonprob, simulvals=None, par=False, n_threads=None):
         for i, j in zip(*np.triu_indices(N_Σ, k=1)):
             r, jp = simulvals[tuple(sorted((round(commonprob[i, i], 10), round(commonprob[j, j], 10))))]
             func = interpolate.interp1d(jp, r)
-            Σ[i, j] = Σ[j, i] = func(commonprob[i, j])
+            Σ[i, j] = Σ[j, i] = func(min(commonprob[i, j], jp.max()))  # func(commonprob[i, j])
     else:
         def calculate_value(i, j):
             r, jp = simulvals[tuple(sorted((round(commonprob[i, i], 10), round(commonprob[j, j], 10))))]
             func = interpolate.interp1d(jp, r)
-            return func(commonprob[i, j])
+            return func(min(commonprob[i, j], jp.max()))  # func(commonprob[i, j])
               
         with concurrent.futures.ThreadPoolExecutor(max_workers=n_threads) as executor:
             indices = np.triu_indices(N_Σ, k=1)
