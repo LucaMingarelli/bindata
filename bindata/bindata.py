@@ -102,7 +102,7 @@ def condprob(x):
     return retval
 
 def rmvbin(margprob=None, sigma=None, bincorr=None,  commonprob=None, N=100,
-           simulvals=None):
+           simulvals=None, _skip_PSD_check=False):
     """
     Creates correlated multivariate binary random variables by thresholding a normal distribution.
     The correlations of the components can be specified either as common probabilities,
@@ -115,6 +115,7 @@ def rmvbin(margprob=None, sigma=None, bincorr=None,  commonprob=None, N=100,
         sigma:  covariance matrix for the normal distribution.
         N (int):  sample size to be generated.
         simulvals:  result from simul.commonprob, a default data array is automatically loaded if this argument is omitted.
+        _skip_PSD_check (bool): False by default. If True, skips check for sigma being PSD: this speeds up the call of bindata.rmvbin and is useful especially when the function is called multiple times with the same sigma.
     """
     if simulvals is None:
         simulvals = SimulVals
@@ -135,7 +136,7 @@ def rmvbin(margprob=None, sigma=None, bincorr=None,  commonprob=None, N=100,
             sigma = commonprob2sigma(commonprob, simulvals)
         else:
             sigma = np.eye(len(margprob))
-    elif (np.linalg.eig(sigma)[0]<0).any():
+    elif (not _skip_PSD_check) and (np.linalg.eig(sigma)[0]<0).any():
         raise ValueError("sigma is not positive definite.")
 
     # Sample from a multivariate normal
