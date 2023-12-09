@@ -9,7 +9,7 @@
 
 
 
-A python replication of the omonymous R library 
+A python replication of the homonymous R library 
 [`bindata`](https://cran.r-project.org/web/packages/bindata/bindata.pdf),
  based on the paper 
 *"Generation of correlated artificial binary data."*, 
