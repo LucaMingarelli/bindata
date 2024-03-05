@@ -115,5 +115,7 @@ by Friedrich Leisch, Andreas Weingessel, and Kurt Hornik.
 Luca Mingarelli, 2022
 
 
+**You find this work useful?** <a href="https://www.buymeacoffee.com/lucamingarelli" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 109px !important;" ></a>
+
 
 
