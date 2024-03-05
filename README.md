@@ -4,9 +4,8 @@
 [![version](https://img.shields.io/badge/version-0.12.2-success.svg)](#)
 [![PyPI Latest Release](https://img.shields.io/pypi/v/bindata.svg)](https://pypi.org/project/bindata/)
 [![License](https://img.shields.io/pypi/l/bindata.svg)](https://github.com/LucaMingarelli/bindata/blob/master/LICENSE.txt)
-
-[//]: # ([![Downloads]&#40;https://static.pepy.tech/personalized-badge/bindata?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads&#41;]&#40;https://pepy.tech/project/bindata&#41;)
-
+[![Downloads](https://static.pepy.tech/personalized-badge/bindata?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads)
+<a href="https://www.buymeacoffee.com/lucamingarelli" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 109px !important;" ></a>
 
 
 A python replication of the homonymous R library 
