@@ -142,5 +142,7 @@ class Tests:
         for c, eZ in expected_Z.items():
             assert np.isclose(Z[c], eZ).all().all()
 
+        Z = simul_commonprob(margprob=margprob,
+                             corr=corr)
 
 

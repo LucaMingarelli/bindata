@@ -68,10 +68,10 @@ def simul_commonprob(margprob, corr=0, method="integrate", n1=10**5, n2=10, pbar
                     z[m, n, k] = margprob[m]
                 elif method == 0: # Integrate
                     try:
-                      a = multivariate_normal(mean=[q1, q2], cov=sigma).cdf([np.inf, np.inf]) - \
-                          multivariate_normal(mean=[q1, q2], cov=sigma).cdf([0, np.inf]) - \
-                          multivariate_normal(mean=[q1, q2], cov=sigma).cdf([np.inf, 0]) + \
-                          multivariate_normal(mean=[q1, q2], cov=sigma).cdf([0, 0])
+                        rv = multivariate_normal(mean=[q1, q2], cov=sigma, allow_singular=True) 
+                        a = (rv.cdf([np.inf, np.inf]) + rv.cdf([0, 0])
+                           - rv.cdf([0, np.inf]) - rv.cdf([np.inf, 0])
+                            )
                     except Exception:
                         a = np.nan
                     z[m, n, k] = a if np.isfinite(a) else np.nan
