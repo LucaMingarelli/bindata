@@ -5,7 +5,7 @@
 """
 
 import numpy as np
-from scipy.stats import norm, mvn
+from scipy.stats import norm, multivariate_normal
 from tqdm import tqdm
 
 def simul_commonprob(margprob, corr=0, method="integrate", n1=10**5, n2=10, pbar=False):
@@ -67,11 +67,14 @@ def simul_commonprob(margprob, corr=0, method="integrate", n1=10**5, n2=10, pbar
                 elif margprob[n] == 1:
                     z[m, n, k] = margprob[m]
                 elif method == 0: # Integrate
-                    a, _ = mvn.mvnun([0, 0], [np.inf, np.inf], [q1, q2], sigma)
-                    if not np.isfinite(a):
-                        z[m, n, k] = np.nan
-                    else:
-                        z[m, n, k] = a
+                    try:
+                      a = multivariate_normal(mean=[q1, q2], cov=sigma).cdf([np.inf, np.inf]) - \
+                          multivariate_normal(mean=[q1, q2], cov=sigma).cdf([0, np.inf]) - \
+                          multivariate_normal(mean=[q1, q2], cov=sigma).cdf([np.inf, 0]) + \
+                          multivariate_normal(mean=[q1, q2], cov=sigma).cdf([0, 0])
+                    except Exception:
+                        a = np.nan
+                    z[m, n, k] = a if np.isfinite(a) else np.nan
                 else:               # Monte Carlo
                     x1 = np.random.multivariate_normal([q1, q2], sigma, size=(n2, n1))
                     x2 = np.mean((x1[:, :, 0] > 0) & (x1[:, :, 1] > 0), axis=1)
